@@ -13,9 +13,12 @@ public class PlayerMovement : MonoBehaviour
     public float jumpTimes = 1;
     float Jumped = 0;
     bool isCrouching = false;
+    public float height = 1.5f;
+    public float crouchheight = 0.5f;
 
     private CharacterController controller;
     private Vector3 velocity;
+    public Transform gubbe;
 
 
 
@@ -101,16 +104,15 @@ public class PlayerMovement : MonoBehaviour
                 // Stand up
                 isCrouching = false;
 
-                controller.height = 5f;
-                controller.center = new Vector3(0f, 2f, 0f);
+                gubbe.transform.localScale = new Vector3(1f, height, 1f);
             }
             else
             {
                 // Crouch
                 isCrouching = true;
 
-                controller.height = 2f;
-                controller.center = new Vector3(0f, 1f, 0f);
+                
+                gubbe.transform.localScale = new Vector3(1f, crouchheight, 1f);
             }
         }
 
@@ -118,3 +120,4 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 }
+
